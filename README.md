@@ -19,44 +19,7 @@ AI evaluation &nbsp;·&nbsp; task and verifier authoring &nbsp;·&nbsp; backend 
 
 ---
 
-## 🧪 Benchmark & Evaluation Work
 
-I turn domain problems into executable benchmark tasks: the environment, the reference solution, and the scorer. I work across data engineering, STEM, and CFD.
-
-| Where | Benchmark | What |
-| --- | --- | --- |
-| **Handshake AI** · Project Dynamo | Terminal-Bench 2 | Authoring tasks that evaluate AI agents working in terminal environments |
-| **Handshake AI** · Project Insight | Terminal-Bench 4 | Task development across authoring and grading agent output |
-| **Handshake AI** · Project LUMIERE | STEM (Engineering) | Engineering tasks where the correct answer must come from the underlying physics, not from pattern-matching the prompt |
-| **Mercor** | Real World Engineering | Data engineering task author for long-horizon engineering tasks |
-| **Chegg** | STEM (Computer Science) | Subject matter expert writing and reviewing worked solutions that must be correct end to end |
-| **Alignerr** | CFD | Task design on **OpenFOAM**, turning simulation problems into checkable engineering tasks |
-| **Ethara AI** | LLM Post-Training | Onsite post-training work |
-
-**Domains:** Data Engineering · STEM & Engineering · Computer Science · Computational Fluid Dynamics
-
-### 📦 What a Task Package Contains
-
-A task is only usable as an eval when all five pieces hold together:
-
-| Component | Why it matters |
-| --- | --- |
-| **Runnable environment** | Containerised and deterministic. If it drifts between runs, every score is noise. |
-| **Instructions** | Clear about the goal, silent about the method. Otherwise you are testing reading comprehension, not engineering. |
-| **Automated scorer** | Checks the outcome, not the output's shape. String-matching grades style, not correctness. |
-| **Reference solution** | Proves the task is solvable and sets the score the scorer must award in full. |
-| **Validation evidence** | Shows the reference scores full marks, a no-op scores zero, and the gap between them is real. |
-
-### 🎯 How I Calibrate
-
-A task every agent passes measures nothing. A task nothing can pass is usually a broken verifier. So I attack my own tasks first:
-
-- **Both ends pinned:** the reference solution must score full marks, and a do-nothing attempt must score zero.
-- **Near-misses must fail:** a plausible, confidently wrong answer is the case that matters. If it passes, the scorer is checking appearance, not outcome.
-- **Hidden cases stay hidden:** grading assets and expected outputs live outside the agent's environment. An agent that can read the answer key is not being evaluated.
-- **Failures get diagnosed:** when an agent fails, I determine whether it reasoned badly, the verifier is wrong, or the infrastructure broke.
-
----
 
 ## 👨‍💻 About Me
 
